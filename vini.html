@@ -1,0 +1,34 @@
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+$(document).ready(function () {
+$("form#data").submit(function(e) {
+    e.preventDefault();    
+    var formData = new FormData(this);
+    $.ajax({
+        url: "http://localhost:8080/v1/api/image/text-detection",
+        headers: {
+              "accept": "application/json",
+              "Access-Control-Allow-Origin":"*"
+          },
+        type: 'POST',
+        data: formData,
+        success: function (data) {debugger
+            alert(data)
+        },
+        cache: false,
+        contentType: false,
+        processData: false
+    });
+});
+});
+</script>
+</head>
+<body>
+<form id="data" method="post" enctype="multipart/form-data">
+    <input name="image" type="file" />
+    <button>Submit</button>
+</form>
+</body>
+</html>
